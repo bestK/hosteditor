@@ -92,7 +92,7 @@ jobs:
         run: |
           mv build/bin/hostseditor build/linux/usr/local/bin/
           cd build/linux
-          mv hostseditor_0.0.0_amd64 "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
+          mv hostseditor "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
           sed -i 's/0.0.0/${{ steps.normalise_version.outputs.version }}/g' "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64/DEBIAN/control"
           dpkg-deb --build -Zxz "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
 

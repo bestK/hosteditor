@@ -1,9 +1,8 @@
 name: Release Linux App
 
 on:
-    push:
-      tags:
-        - '*'
+  release:
+    types: [ published ]
 
 jobs:
   release:
@@ -69,30 +68,30 @@ jobs:
       - name: Setup control template
         shell: bash
         run: |
-          content=$(cat build/linux/DEBIAN/control)
+          content=$(cat build/linux/hostseditor_0.0.0_amd64/DEBIAN/control)
           content=$(echo "$content" | sed -e "s/{{.Name}}/$(jq -r '.name' wails.json)/g")
           content=$(echo "$content" | sed -e "s/{{.Info.ProductVersion}}/$(jq -r '.info.productVersion' wails.json)/g")
           content=$(echo "$content" | sed -e "s/{{.Author.Name}}/$(jq -r '.author.name' wails.json)/g")
           content=$(echo "$content" | sed -e "s/{{.Author.Email}}/$(jq -r '.author.email' wails.json)/g")
           content=$(echo "$content" | sed -e "s/{{.Info.Comments}}/$(jq -r '.info.comments' wails.json)/g")
           echo $content
-          echo "$content" > build/linux/DEBIAN/control
+          echo "$content" > build/linux/hostseditor_0.0.0_amd64/DEBIAN/control
 
       - name: Setup app template
         shell: bash
         run: |
-          content=$(cat build/linux/usr/share/applications/hostseditor.desktop)
+          content=$(cat build/linux/hostseditor_0.0.0_amd64/usr/share/applications/hostseditor.desktop)
           content=$(echo "$content" | sed -e "s/{{.Info.ProductName}}/$(jq -r '.info.productName' wails.json)/g")
           content=$(echo "$content" | sed -e "s/{{.Info.Comments}}/$(jq -r '.info.comments' wails.json)/g")
           echo $content
-          echo "$content" > build/linux/usr/share/applications/hostseditor.desktop
+          echo "$content" > build/linux/hostseditor_0.0.0_amd64/usr/share/applications/hostseditor.desktop
 
       - name: Package up deb file
         shell: bash
         run: |
-          mv build/bin/hostseditor build/linux/usr/local/bin/
+          mv build/bin/hostseditor build/linux/hostseditor_0.0.0_amd64/usr/local/bin/
           cd build/linux
-          mv hostseditor "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
+          mv hostseditor_0.0.0_amd64 "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
           sed -i 's/0.0.0/${{ steps.normalise_version.outputs.version }}/g' "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64/DEBIAN/control"
           dpkg-deb --build -Zxz "hostseditor_${{ steps.normalise_version.outputs.version }}_amd64"
 

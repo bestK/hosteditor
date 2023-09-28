@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "主页",
+    "about": "关于"
+  },
+  "languages": {
+    "en": "English",
+    "zh-Hans": "简体中文",
+    "fr": "Français"
+  },
+  "topbar": {
+    "minimise": "最小化",
+    "quit": "退出",
+    "save": "保存",
+    "refresh": "刷新",
+    "remoteHosts": "远程HOST",
+    "loadRemoteHosts": "加载远程HOST",
+    "showHostsBackup": "查看备份"
+  },
+  "homepage": {
+    "welcome": "欢迎使用基于Vue开发的Wails程序 HostEditor",
+    "getting-started": "快速入门",
+    "star-me": "Github"
+  },
+  "aboutpage": {
+    "title": "HostEditor",
+    "project-repository": "项目仓库",
+    "author": "作者",
+    "misitebao": "bestk",
+    "wails-repository": "HostEditor 仓库",
+    "thanks": "感谢各位大佬的支持🙏！"
+  },
+  "global": {
+    "not-supported": "由于是测试版，所以暂时做不了，后续会完成它。",
+    "click-link": "当前点击的链接是: "
+  },
+  "alert": {
+    "edit": "编辑",
+    "confirm": "确认",
+    "error": "错误",
+    "info": "信息",
+    "refreshed": "已刷新",
+    "illegal-url": "非法 url",
+    "confirm-remote-hosts": "是否更新为来自url的 hosts?",
+    "confirm-edit": "确定保存当前修改的内容吗？"
+  }
+}

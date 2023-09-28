@@ -26,3 +26,15 @@ jobs:
           build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
           nsis: false
+      # Upload build assets
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Wails Build ${{runner.os}} ${{matrix.build.name}}
+          path: |
+            */bin/
+            *\bin\*
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            */bin/*    

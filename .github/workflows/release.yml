@@ -14,7 +14,6 @@ jobs:
       fail-fast: false
       matrix:
         build: [
-          {name: hostseditor, platform: linux/amd64, os: ubuntu-latest},
           {name: hostseditor, platform: windows/amd64, os: windows-latest},
           {name: hostseditor, platform: darwin/universal, os: macos-latest}
         ]
@@ -28,4 +27,3 @@ jobs:
           build-name: ${{ matrix.build.name }}
           build-platform: ${{ matrix.build.platform }}
           nsis: false
-          
